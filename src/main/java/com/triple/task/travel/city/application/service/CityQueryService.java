@@ -4,12 +4,15 @@ import com.triple.task.travel.city.adapter.out.persistence.CityRepository;
 import com.triple.task.travel.city.application.model.CityQuery;
 import com.triple.task.travel.city.application.model.CityQueryList;
 import com.triple.task.travel.city.domain.City;
+import com.triple.task.travel.trip.application.service.TripQueryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -18,6 +21,7 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 public class CityQueryService {
     private final CityRepository cityRepository;
+    private final TripQueryService tripQueryService;
 
     public CityQueryList selectAll() {
         return CityQueryList.of(cityRepository.findAll().stream()
@@ -29,10 +33,36 @@ public class CityQueryService {
         return CityQuery.of(selectBy(cityId));
     }
 
-    public void selectCitiesBy(Long memberId) {
-        // TODO 여행 중인 도시, 여행 예정인 도시
-        // TODO 하루 이내에 등록된 도시, 최근 일주일 이내에 한번 이상 조회된 도시
-        // TODO 무작위
+    public CityQueryList selectCitiesBy(Long memberId) {
+        List<City> cities = cityRepository.ongoingTripCities(memberId);
+        Set<City> citySet = new LinkedHashSet<>(cities);
+        if (citySet.size() < 10) {
+            citySet.addAll(cityRepository.scheduledTripCities(memberId));
+        }
+
+        if (citySet.size() < 10) {
+            citySet.addAll(cityRepository.createdWithinADay());
+        }
+
+        if (citySet.size() < 10) {
+            citySet.addAll(cityRepository.searchedOneMoreTimeWithinAWeek());
+        }
+
+        if (citySet.size() < 10) {
+            citySet.addAll(cityRepository.findAll());
+        }
+
+        for(City city : citySet) {
+            if (!cities.contains(city)) {
+                cities.add(city);
+            }
+        }
+
+        // cityRepository.findCitiesByUser(memberId);
+
+        return CityQueryList.of(cities.stream()
+                .map(CityQuery::of)
+                .collect(Collectors.toList()));
     }
 
     public City selectBy(Long cityId) {

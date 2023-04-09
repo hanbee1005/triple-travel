@@ -29,10 +29,9 @@ public class CityRestController {
         return CommonResponse.ok(selectOne);
     }
 
-    @GetMapping("/city/{cityId}/member/{memberId}")
-    public void findCities(@PathVariable Long cityId,
-                           @PathVariable Long memberId) {
-
+    @GetMapping("/city/member/{memberId}")
+    public CommonResponse<CityQueryList> findCities(@PathVariable Long memberId) {
+        return CommonResponse.ok(cityQueryService.selectCitiesBy(memberId));
     }
 
     @PostMapping("/city")

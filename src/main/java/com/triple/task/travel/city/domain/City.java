@@ -3,6 +3,7 @@ package com.triple.task.travel.city.domain;
 import com.triple.task.travel.city.application.model.CreateCityCommand;
 import com.triple.task.travel.city.application.model.UpdateCityCommand;
 import com.triple.task.travel.common.model.AbstractDateTimeEntity;
+import com.triple.task.travel.trip.domain.Trip;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -33,6 +34,9 @@ public class City extends AbstractDateTimeEntity {
 
     @OneToMany(mappedBy = "city")
     private List<CityView> cityViews = new ArrayList<>();
+
+    @OneToMany(mappedBy = "city")
+    private List<Trip> trips = new ArrayList<>();
 
     public static City create(CreateCityCommand command) {
         return City.builder()
