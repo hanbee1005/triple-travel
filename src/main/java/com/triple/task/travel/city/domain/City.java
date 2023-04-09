@@ -5,10 +5,7 @@ import com.triple.task.travel.city.application.model.UpdateCityCommand;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -21,11 +18,14 @@ public class City {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
     private String continent;
     private String country;
 
+    @Column(nullable = false)
     private Long creator;
+    @Column(nullable = false)
     private Long lastModifier;
 
     public static City create(CreateCityCommand command) {
