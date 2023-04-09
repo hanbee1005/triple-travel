@@ -2,7 +2,6 @@ package com.triple.task.travel.city.domain;
 
 import com.triple.task.travel.city.application.model.CreateCityCommand;
 import com.triple.task.travel.city.application.model.UpdateCityCommand;
-import com.triple.task.travel.common.model.AbstractCreatedAtEntity;
 import com.triple.task.travel.common.model.AbstractDateTimeEntity;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
