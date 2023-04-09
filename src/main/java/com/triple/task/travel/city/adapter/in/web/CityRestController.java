@@ -2,6 +2,7 @@ package com.triple.task.travel.city.adapter.in.web;
 
 import com.triple.task.travel.city.adapter.in.web.model.CreateAndUpdateCityRequest;
 import com.triple.task.travel.city.application.model.CityQuery;
+import com.triple.task.travel.city.application.model.CityQueryList;
 import com.triple.task.travel.city.application.service.CityCommandService;
 import com.triple.task.travel.city.application.service.CityQueryService;
 import com.triple.task.travel.common.model.CommonResponse;
@@ -17,8 +18,8 @@ public class CityRestController {
     private final CityQueryService cityQueryService;
 
     @GetMapping("/city")
-    public void findCities() {
-
+    public CommonResponse<CityQueryList> findCities() {
+        return CommonResponse.ok(cityQueryService.selectAll());
     }
 
     @GetMapping("/city/{cityId}")
