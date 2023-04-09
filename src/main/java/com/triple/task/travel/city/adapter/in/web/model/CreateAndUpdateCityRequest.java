@@ -2,12 +2,14 @@ package com.triple.task.travel.city.adapter.in.web.model;
 
 import com.triple.task.travel.city.application.model.CreateCityCommand;
 import com.triple.task.travel.city.application.model.UpdateCityCommand;
+import lombok.Builder;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Getter
+@Builder
 public class CreateAndUpdateCityRequest {
     @NotBlank
     private String name;
