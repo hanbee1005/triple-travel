@@ -22,8 +22,10 @@ public class CityRestController {
     }
 
     @GetMapping("/city/{cityId}")
-    public void findCity(@PathVariable Long cityId) {
-
+    public CommonResponse<CityQuery> findCity(@PathVariable Long cityId) {
+        CityQuery selectOne = cityQueryService.selectOne(cityId);
+         cityCommandService.addCityViewCount(cityId);
+        return CommonResponse.ok(selectOne);
     }
 
     @GetMapping("/city/{cityId}/member/{memberId}")

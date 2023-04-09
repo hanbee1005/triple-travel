@@ -2,10 +2,14 @@ package com.triple.task.travel.city.domain;
 
 import com.triple.task.travel.city.application.model.CreateCityCommand;
 import com.triple.task.travel.city.application.model.UpdateCityCommand;
+import com.triple.task.travel.common.model.AbstractCreatedAtEntity;
+import com.triple.task.travel.common.model.AbstractDateTimeEntity;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -13,7 +17,7 @@ import javax.persistence.*;
 @Getter
 @Entity
 @DynamicUpdate
-public class City {
+public class City extends AbstractDateTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,6 +31,9 @@ public class City {
     private Long creator;
     @Column(nullable = false)
     private Long lastModifier;
+
+    @OneToMany(mappedBy = "city")
+    private List<CityView> cityViews = new ArrayList<>();
 
     public static City create(CreateCityCommand command) {
         return City.builder()

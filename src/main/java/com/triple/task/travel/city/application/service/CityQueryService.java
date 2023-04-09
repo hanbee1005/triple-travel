@@ -1,6 +1,7 @@
 package com.triple.task.travel.city.application.service;
 
 import com.triple.task.travel.city.adapter.out.persistence.CityRepository;
+import com.triple.task.travel.city.application.model.CityQuery;
 import com.triple.task.travel.city.domain.City;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,8 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class CityQueryService {
     private final CityRepository cityRepository;
 
-    public void selectOne(Long cityId) {
-        // TODO 조회 수 증가
+    public CityQuery selectOne(Long cityId) {
+        return CityQuery.of(selectBy(cityId));
     }
 
     public void selectCitiesBy(Long memberId) {
