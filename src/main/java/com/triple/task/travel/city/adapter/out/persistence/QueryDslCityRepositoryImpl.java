@@ -23,80 +23,23 @@ public class QueryDslCityRepositoryImpl implements QueryDslCityRepository {
         return jpaQueryFactory
                 .selectFrom(city)
                 .leftJoin(city.trips, trip)
+                .on(ongoingAndScheduledTrip(memberId))
                 .leftJoin(city.cityViews, cityView)
-                .where(ongoingAndScheduledTrip(memberId)
-                        .or(isCreatedWithinADay())
-                        .or(isSearchedOneMoreTimeWithinAWeek()))
-                .orderBy(trip.startAt.asc(), city.createdAt.desc(), cityView.createdAt.desc())
+                .on(isSearchedOneMoreTimeWithinAWeek())
+                .where(isCreatedWithinADay())
+                .orderBy(trip.startAt.asc().nullsLast(), city.createdAt.desc(), cityView.createdAt.desc().nullsLast())
                 .fetch();
-    }
-
-    @Override
-    public List<City> ongoingTripCities(Long memberId) {
-        return jpaQueryFactory
-                .selectFrom(city)
-                .join(city.trips, trip)
-                .where(trip.creator.eq(memberId)
-                        .and(trip.startAt.before(LocalDateTime.now()))
-                        .and(trip.endAt.after(LocalDateTime.now())))
-                .orderBy(trip.startAt.asc())
-                .fetch();
-    }
-
-    @Override
-    public List<City> scheduledTripCities(Long memberId) {
-        return jpaQueryFactory
-                .selectFrom(city)
-                .join(city.trips, trip)
-                .where(trip.creator.eq(memberId)
-                        .and(trip.startAt.after(LocalDateTime.now())))
-                .orderBy(trip.startAt.asc())
-                .fetch();
-    }
-
-    @Override
-    public List<City> createdWithinADay() {
-        return jpaQueryFactory
-                .selectFrom(city)
-                .where(city.createdAt.after(LocalDateTime.of(LocalDate.now().minusDays(2), LocalTime.of(23, 59, 59))))
-                .orderBy(city.createdAt.asc())
-                .fetch();
-    }
-
-    @Override
-    public List<City> searchedOneMoreTimeWithinAWeek() {
-        return jpaQueryFactory
-                .selectFrom(city)
-                .leftJoin(city.cityViews, cityView)
-                .where(cityView.createdAt.after(LocalDateTime.of(LocalDate.now().minusWeeks(1).minusDays(1), LocalTime.of(23, 59, 59))))
-                .orderBy(cityView.createdAt.asc())
-                .fetch();
-    }
-
-    private BooleanExpression eqTripCreator(Long memberId) {
-        return trip.creator.eq(memberId);
     }
 
     private BooleanExpression ongoingAndScheduledTrip(Long memberId) {
-        return trip.creator.eq(memberId).and(trip.endAt.after(LocalDateTime.now()));
-    }
-
-    private BooleanExpression ongoingTrip(Long memberId) {
-        return trip.creator.eq(memberId)
-                .and(trip.startAt.before(LocalDateTime.now()))
-                .and(trip.endAt.after(LocalDateTime.now()));
-    }
-
-    private BooleanExpression scheduledTrip(Long memberId) {
-        return trip.creator.eq(memberId)
-                .and(trip.startAt.after(LocalDateTime.now()));
+        return trip.creator.eq(memberId).and(trip.endAt.goe(LocalDateTime.now()));
     }
 
     private BooleanExpression isCreatedWithinADay() {
-        return city.createdAt.after(LocalDateTime.of(LocalDate.now().minusDays(2), LocalTime.of(23, 59, 59)));
+        return city.createdAt.goe(LocalDateTime.of(LocalDate.now().minusDays(2), LocalTime.of(23, 59, 59)));
     }
 
     private BooleanExpression isSearchedOneMoreTimeWithinAWeek() {
-        return cityView.createdAt.after(LocalDateTime.of(LocalDate.now().minusWeeks(1).minusDays(1), LocalTime.of(23, 59, 59)));
+        return cityView.createdAt.goe(LocalDateTime.of(LocalDate.now().minusWeeks(1).minusDays(1), LocalTime.of(23, 59, 59)));
     }
 }
