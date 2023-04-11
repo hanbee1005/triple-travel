@@ -1,0 +1,15 @@
+= TRIPLE TRAVEL
+Hanbee Son <sonhanbi1002@gmail.com>
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 3
+:sectlinks:
+:sectnums:
+:docinfo: shared-head
+
+여행지(도시) 관리 API 서버 인터페이스 문서
+
+include::city.adoc[]
+include::trip.adoc[]

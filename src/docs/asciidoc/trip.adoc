@@ -1,0 +1,89 @@
+ifndef::snippets[]
+:snippets: ./build/generated-snippets
+endif::[]
+
+= Trip
+
+== [small]#여행 등록#
+[red big]#Overview#
+----
+여행 일정을 등록하는 API 입니다.
+----
+
+[red big]#CURL request#
+include::{snippets}/trip/create/curl-request.adoc[]
+
+[red big]#HTTP request#
+include::{snippets}/trip/create/http-request.adoc[]
+
+[red big]#HTTP response#
+include::{snippets}/trip/create/http-response.adoc[]
+
+[red big]#Request parameters#
+include::{snippets}/trip/create/request-fields.adoc[]
+
+[red big]#Response fields#
+include::{snippets}/trip/create/response-fields.adoc[]
+
+== [small]#여행 수정#
+[red big]#Overview#
+----
+여행 일정을 수정하는 API 입니다.
+----
+
+[red big]#CURL request#
+include::{snippets}/trip/update/curl-request.adoc[]
+
+[red big]#HTTP request#
+include::{snippets}/trip/update/http-request.adoc[]
+
+[red big]#HTTP response#
+include::{snippets}/trip/update/http-response.adoc[]
+
+[red big]#Request parameters#
+include::{snippets}/trip/update/request-fields.adoc[]
+
+[red big]#Response fields#
+include::{snippets}/trip/update/response-fields.adoc[]
+
+== [small]#여행 삭제#
+[red big]#Overview#
+----
+여행 일정을 삭제하는 API 입니다.
+----
+
+[red big]#CURL request#
+include::{snippets}/trip/delete/curl-request.adoc[]
+
+[red big]#HTTP request#
+include::{snippets}/trip/delete/http-request.adoc[]
+
+[red big]#HTTP response#
+include::{snippets}/trip/delete/http-response.adoc[]
+
+[red big]#Path parameters#
+include::{snippets}/trip/delete/path-parameters.adoc[]
+
+[red big]#Response fields#
+include::{snippets}/trip/delete/response-fields.adoc[]
+
+== [small]#여행 단건 조회#
+[red big]#Overview#
+----
+여행 ID를 사용하여 단건 조회하는 API 입니다.
+----
+
+[red big]#CURL request#
+include::{snippets}/trip/findOne/curl-request.adoc[]
+
+[red big]#HTTP request#
+include::{snippets}/trip/findOne/http-request.adoc[]
+
+[red big]#HTTP response#
+include::{snippets}/trip/findOne/http-response.adoc[]
+
+[red big]#Path parameters#
+include::{snippets}/trip/findOne/path-parameters.adoc[]
+
+[red big]#Response fields#
+include::{snippets}/trip/findOne/response-fields.adoc[]

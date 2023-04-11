@@ -2,12 +2,14 @@ package com.triple.task.travel.trip.adapter.in.web.model;
 
 import com.triple.task.travel.trip.application.model.CreateTripCommand;
 import com.triple.task.travel.trip.application.model.UpdateTripCommand;
+import lombok.Builder;
 import lombok.Getter;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Getter
+@Builder
 public class CreateAndUpdateTripRequest {
     @NotNull
     private Long cityId;

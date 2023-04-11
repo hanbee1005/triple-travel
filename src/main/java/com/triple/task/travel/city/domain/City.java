@@ -32,9 +32,11 @@ public class City extends AbstractDateTimeEntity {
     @Column(nullable = false)
     private Long lastModifier;
 
+    @Builder.Default
     @OneToMany(mappedBy = "city")
     private List<CityView> cityViews = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "city")
     private List<Trip> trips = new ArrayList<>();
 

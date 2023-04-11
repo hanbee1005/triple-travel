@@ -1,0 +1,110 @@
+ifndef::snippets[]
+:snippets: ./build/generated-snippets
+endif::[]
+
+= City
+
+== [small]#도시 등록#
+[red big]#Overview#
+----
+도시(여행지)를 등록하는 API 입니다.
+----
+
+[red big]#CURL request#
+include::{snippets}/city/create/curl-request.adoc[]
+
+[red big]#HTTP request#
+include::{snippets}/city/create/http-request.adoc[]
+
+[red big]#HTTP response#
+include::{snippets}/city/create/http-response.adoc[]
+
+[red big]#Request parameters#
+include::{snippets}/city/create/request-fields.adoc[]
+
+[red big]#Response fields#
+include::{snippets}/city/create/response-fields.adoc[]
+
+== [small]#도시 수정#
+[red big]#Overview#
+----
+도시(여행지)를 수정하는 API 입니다.
+----
+
+[red big]#CURL request#
+include::{snippets}/city/update/curl-request.adoc[]
+
+[red big]#HTTP request#
+include::{snippets}/city/update/http-request.adoc[]
+
+[red big]#HTTP response#
+include::{snippets}/city/update/http-response.adoc[]
+
+[red big]#Request parameters#
+include::{snippets}/city/update/request-fields.adoc[]
+
+[red big]#Response fields#
+include::{snippets}/city/update/response-fields.adoc[]
+
+== [small]#도시 삭제#
+[red big]#Overview#
+----
+도시(여행지)를 삭제하는 API 입니다.
+----
+
+[red big]#CURL request#
+include::{snippets}/city/delete/curl-request.adoc[]
+
+[red big]#HTTP request#
+include::{snippets}/city/delete/http-request.adoc[]
+
+[red big]#HTTP response#
+include::{snippets}/city/delete/http-response.adoc[]
+
+[red big]#Path parameters#
+include::{snippets}/city/delete/path-parameters.adoc[]
+
+[red big]#Response fields#
+include::{snippets}/city/delete/response-fields.adoc[]
+
+== [small]#도시 단건 조회#
+[red big]#Overview#
+----
+도시(여행지) ID를 사용하여 단건 조회하는 API 입니다.
+----
+
+[red big]#CURL request#
+include::{snippets}/city/findOne/curl-request.adoc[]
+
+[red big]#HTTP request#
+include::{snippets}/city/findOne/http-request.adoc[]
+
+[red big]#HTTP response#
+include::{snippets}/city/findOne/http-response.adoc[]
+
+[red big]#Path parameters#
+include::{snippets}/city/findOne/path-parameters.adoc[]
+
+[red big]#Response fields#
+include::{snippets}/city/findOne/response-fields.adoc[]
+
+== [small]#사용자 별 도시 목록 조회#
+[red big]#Overview#
+----
+사용자 ID를 사용하여 도시(여행지) 목록을 조회하는 API 입니다.
+----
+
+[red big]#CURL request#
+include::{snippets}/city/findByUser/curl-request.adoc[]
+
+[red big]#HTTP request#
+include::{snippets}/city/findByUser/http-request.adoc[]
+
+[red big]#HTTP response#
+include::{snippets}/city/findByUser/http-response.adoc[]
+
+[red big]#Path parameters#
+include::{snippets}/city/findByUser/path-parameters.adoc[]
+
+[red big]#Response fields#
+include::{snippets}/city/findByUser/response-fields.adoc[]

@@ -3,7 +3,10 @@ package com.triple.task.travel.mock;
 import com.triple.task.travel.city.adapter.in.web.model.CreateAndUpdateCityRequest;
 import com.triple.task.travel.city.application.model.CityQuery;
 import com.triple.task.travel.city.application.model.CityQueryList;
+import com.triple.task.travel.trip.adapter.in.web.model.CreateAndUpdateTripRequest;
+import com.triple.task.travel.trip.application.model.TripQuery;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class MockModel {
@@ -51,6 +54,24 @@ public class MockModel {
         return CityQueryList.builder()
                 .count(getCityQueries().size())
                 .cities(getCityQueries())
+                .build();
+    }
+
+    public static CreateAndUpdateTripRequest getCreateAndUpdateTripRequest() {
+        return CreateAndUpdateTripRequest.builder()
+                .cityId(1L)
+                .startAt(LocalDateTime.now())
+                .endAt(LocalDateTime.now().plusDays(1))
+                .memberId(1L)
+                .build();
+    }
+
+    public static TripQuery getTripQuery() {
+        return TripQuery.builder()
+                .id(1L)
+                .city(getCityQuery())
+                .startAt(LocalDateTime.now())
+                .endAt(LocalDateTime.now().plusDays(1))
                 .build();
     }
 }

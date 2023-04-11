@@ -21,6 +21,7 @@ import static com.triple.task.travel.mock.MockModel.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -52,6 +53,12 @@ class CityRestControllerTest extends CommonControllerTest {
                 .andDo(MockMvcRestDocumentation.document(documentPath,
                         RestdocsUtils.getDocumentRequest(),
                         RestdocsUtils.getDocumentResponse(),
+                        requestFields(
+                                PayloadDocumentation.fieldWithPath("name").type(JsonFieldType.STRING).description("도시명"),
+                                PayloadDocumentation.fieldWithPath("continent").type(JsonFieldType.STRING).description("대륙명"),
+                                PayloadDocumentation.fieldWithPath("country").type(JsonFieldType.STRING).description("나라명"),
+                                PayloadDocumentation.fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("사용자 ID")
+                        ),
                         RestdocsUtils.commonResponseFields(false,
                                 PayloadDocumentation.fieldWithPath("id").type(JsonFieldType.NUMBER).description("도시 ID"),
                                 PayloadDocumentation.fieldWithPath("name").type(JsonFieldType.STRING).description("도시명"),
@@ -84,6 +91,12 @@ class CityRestControllerTest extends CommonControllerTest {
                         RestdocsUtils.getDocumentResponse(),
                         RequestDocumentation.pathParameters(
                                 RestdocsUtils.parameterWithNameAndType("cityId", "number").description("도시 ID")
+                        ),
+                        requestFields(
+                                PayloadDocumentation.fieldWithPath("name").type(JsonFieldType.STRING).description("도시명"),
+                                PayloadDocumentation.fieldWithPath("continent").type(JsonFieldType.STRING).description("대륙명"),
+                                PayloadDocumentation.fieldWithPath("country").type(JsonFieldType.STRING).description("나라명"),
+                                PayloadDocumentation.fieldWithPath("memberId").type(JsonFieldType.NUMBER).description("사용자 ID")
                         ),
                         RestdocsUtils.commonResponseFields(false,
                                 PayloadDocumentation.fieldWithPath("id").type(JsonFieldType.NUMBER).description("도시 ID"),
