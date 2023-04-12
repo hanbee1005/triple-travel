@@ -1,6 +1,8 @@
 package com.triple.task.travel.city.adapter.out.persistence;
 
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.CaseBuilder;
+import com.querydsl.core.types.dsl.NumberExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.triple.task.travel.city.domain.City;
 import lombok.RequiredArgsConstructor;
@@ -26,8 +28,7 @@ public class QueryDslCityRepositoryImpl implements QueryDslCityRepository {
                 .on(ongoingAndScheduledTrip(memberId))
                 .leftJoin(city.cityViews, cityView)
                 .on(isSearchedOneMoreTimeWithinAWeek())
-                .where(isCreatedWithinADay())
-                .orderBy(trip.startAt.asc().nullsLast(), city.createdAt.desc(), cityView.createdAt.desc().nullsLast())
+                .orderBy(trip.startAt.asc().nullsLast(), isCreatedWithinADay().desc(), cityView.createdAt.desc().nullsLast())
                 .fetch();
     }
 
@@ -35,8 +36,10 @@ public class QueryDslCityRepositoryImpl implements QueryDslCityRepository {
         return trip.creator.eq(memberId).and(trip.endAt.goe(LocalDateTime.now()));
     }
 
-    private BooleanExpression isCreatedWithinADay() {
-        return city.createdAt.goe(LocalDateTime.of(LocalDate.now().minusDays(2), LocalTime.of(23, 59, 59)));
+    private NumberExpression isCreatedWithinADay() {
+        return new CaseBuilder().when(city.createdAt.goe(LocalDateTime.of(LocalDate.now().minusDays(2), LocalTime.of(23, 59, 59))))
+                .then(1)
+                .otherwise(0);
     }
 
     private BooleanExpression isSearchedOneMoreTimeWithinAWeek() {
