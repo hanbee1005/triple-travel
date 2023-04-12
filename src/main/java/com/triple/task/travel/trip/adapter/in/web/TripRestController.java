@@ -2,6 +2,7 @@ package com.triple.task.travel.trip.adapter.in.web;
 
 import com.triple.task.travel.common.model.CommonResponse;
 import com.triple.task.travel.trip.adapter.in.web.model.CreateAndUpdateTripRequest;
+import com.triple.task.travel.trip.adapter.in.web.model.DeleteTripResponse;
 import com.triple.task.travel.trip.application.model.TripQuery;
 import com.triple.task.travel.trip.application.service.TripCommandService;
 import com.triple.task.travel.trip.application.service.TripQueryService;
@@ -32,8 +33,8 @@ public class TripRestController {
     }
 
     @DeleteMapping("/trip/{tripId}")
-    public CommonResponse deleteTrip(@PathVariable Long tripId) {
+    public CommonResponse<DeleteTripResponse> deleteTrip(@PathVariable Long tripId) {
         tripCommandService.delete(tripId);
-        return CommonResponse.ok();
+        return CommonResponse.ok(DeleteTripResponse.builder().id(tripId).build());
     }
 }

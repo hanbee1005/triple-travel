@@ -817,12 +817,14 @@ Host: localhost</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 55
+Content-Length: 69
 
 {
   "code" : 200,
   "message" : "OK",
-  "data" : null
+  "data" : {
+    "id" : 1
+  }
 }</code></pre>
 </div>
 </div>
@@ -876,9 +878,9 @@ Content-Length: 55
 <td class="tableblock halign-left valign-top"><p class="tableblock">응답 메시지</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">결과</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">삭제된 도시 ID</p></td>
 </tr>
 </tbody>
 </table>
@@ -1177,8 +1179,8 @@ Content-Length: 433
     -H 'Endpoint: http://localhost' \
     -d '{
   "cityId" : 1,
-  "startAt" : "2023-04-12 20:55:37",
-  "endAt" : "2023-04-13 20:55:37",
+  "startAt" : "2023-04-12 21:01:13",
+  "endAt" : "2023-04-13 21:01:13",
   "memberId" : 1
 }'</code></pre>
 </div>
@@ -1196,8 +1198,8 @@ Host: localhost
 
 {
   "cityId" : 1,
-  "startAt" : "2023-04-12 20:55:37",
-  "endAt" : "2023-04-13 20:55:37",
+  "startAt" : "2023-04-12 21:01:13",
+  "endAt" : "2023-04-13 21:01:13",
   "memberId" : 1
 }</code></pre>
 </div>
@@ -1222,8 +1224,8 @@ Content-Length: 274
       "continent" : "아시아",
       "country" : "대한민국"
     },
-    "startAt" : "2023-04-12 20:55:37",
-    "endAt" : "2023-04-13 20:55:37"
+    "startAt" : "2023-04-12 21:01:13",
+    "endAt" : "2023-04-13 21:01:13"
   }
 }</code></pre>
 </div>
@@ -1359,8 +1361,8 @@ Content-Length: 274
     -H 'Endpoint: http://localhost' \
     -d '{
   "cityId" : 1,
-  "startAt" : "2023-04-12 20:55:37",
-  "endAt" : "2023-04-13 20:55:37",
+  "startAt" : "2023-04-12 21:01:13",
+  "endAt" : "2023-04-13 21:01:13",
   "memberId" : 1
 }'</code></pre>
 </div>
@@ -1378,8 +1380,8 @@ Host: localhost
 
 {
   "cityId" : 1,
-  "startAt" : "2023-04-12 20:55:37",
-  "endAt" : "2023-04-13 20:55:37",
+  "startAt" : "2023-04-12 21:01:13",
+  "endAt" : "2023-04-13 21:01:13",
   "memberId" : 1
 }</code></pre>
 </div>
@@ -1404,8 +1406,8 @@ Content-Length: 274
       "continent" : "아시아",
       "country" : "대한민국"
     },
-    "startAt" : "2023-04-12 20:55:37",
-    "endAt" : "2023-04-13 20:55:37"
+    "startAt" : "2023-04-12 21:01:13",
+    "endAt" : "2023-04-13 21:01:13"
   }
 }</code></pre>
 </div>
@@ -1559,12 +1561,14 @@ Host: localhost</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 55
+Content-Length: 69
 
 {
   "code" : 200,
   "message" : "OK",
-  "data" : null
+  "data" : {
+    "id" : 1
+  }
 }</code></pre>
 </div>
 </div>
@@ -1618,9 +1622,9 @@ Content-Length: 55
 <td class="tableblock halign-left valign-top"><p class="tableblock">응답 메시지</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Null</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">결과</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">삭제된 여행 ID</p></td>
 </tr>
 </tbody>
 </table>
@@ -1676,8 +1680,8 @@ Content-Length: 274
       "continent" : "아시아",
       "country" : "대한민국"
     },
-    "startAt" : "2023-04-12 20:55:37",
-    "endAt" : "2023-04-13 20:55:37"
+    "startAt" : "2023-04-12 21:01:13",
+    "endAt" : "2023-04-13 21:01:13"
   }
 }</code></pre>
 </div>

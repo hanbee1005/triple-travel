@@ -1,6 +1,7 @@
 package com.triple.task.travel.city.adapter.in.web;
 
 import com.triple.task.travel.city.adapter.in.web.model.CreateAndUpdateCityRequest;
+import com.triple.task.travel.city.adapter.in.web.model.DeleteCityResponse;
 import com.triple.task.travel.city.application.model.CityQuery;
 import com.triple.task.travel.city.application.model.CityQueryList;
 import com.triple.task.travel.city.application.service.CityCommandService;
@@ -46,8 +47,8 @@ public class CityRestController {
     }
 
     @DeleteMapping("/city/{cityId}")
-    public CommonResponse deleteCity(@PathVariable Long cityId) {
+    public CommonResponse<DeleteCityResponse> deleteCity(@PathVariable Long cityId) {
         cityCommandService.delete(cityId);
-        return CommonResponse.ok();
+        return CommonResponse.ok(DeleteCityResponse.builder().id(cityId).build());
     }
 }

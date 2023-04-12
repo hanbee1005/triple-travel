@@ -135,10 +135,8 @@ class TripRestControllerTest extends CommonControllerTest {
                         RequestDocumentation.pathParameters(
                                 RestdocsUtils.parameterWithNameAndType("tripId", "number").description("여행 ID")
                         ),
-                        PayloadDocumentation.responseFields(
-                                fieldWithPath("code").type(JsonFieldType.NUMBER).description("응답 코드"),
-                                fieldWithPath("message").type(JsonFieldType.STRING).description("응답 메시지"),
-                                PayloadDocumentation.fieldWithPath("data").type(JsonFieldType.NULL).description("결과")
+                        RestdocsUtils.commonResponseFields(false,
+                                PayloadDocumentation.fieldWithPath("id").type(JsonFieldType.NUMBER).description("삭제된 여행 ID")
                         )
                 )).andDo(print());
     }
