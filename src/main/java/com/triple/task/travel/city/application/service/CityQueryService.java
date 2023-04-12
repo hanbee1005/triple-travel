@@ -4,6 +4,7 @@ import com.triple.task.travel.city.adapter.out.persistence.CityRepository;
 import com.triple.task.travel.city.application.model.CityQuery;
 import com.triple.task.travel.city.application.model.CityQueryList;
 import com.triple.task.travel.city.domain.City;
+import com.triple.task.travel.common.exception.CityFotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -38,12 +39,12 @@ public class CityQueryService {
     }
 
     public City selectBy(Long cityId) {
-        // TODO 에러 처리 필요
-        return cityRepository.findById(cityId).orElseThrow();
+        return cityRepository.findById(cityId)
+                .orElseThrow(CityFotFoundException::new);
     }
 
     public City selectWithTripsBy(Long cityId) {
-        // TODO 에러 처리 필요
-        return cityRepository.findCityWithTrip(cityId).orElseThrow();
+        return cityRepository.findCityWithTrip(cityId)
+                .orElseThrow(CityFotFoundException::new);
     }
 }

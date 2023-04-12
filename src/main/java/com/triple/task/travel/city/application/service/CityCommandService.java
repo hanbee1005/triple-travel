@@ -7,6 +7,8 @@ import com.triple.task.travel.city.application.model.CreateCityCommand;
 import com.triple.task.travel.city.application.model.UpdateCityCommand;
 import com.triple.task.travel.city.domain.City;
 import com.triple.task.travel.city.domain.CityView;
+import com.triple.task.travel.common.exception.BusinessException;
+import com.triple.task.travel.common.exception.ExceptionType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
@@ -37,7 +39,7 @@ public class CityCommandService {
         City city = cityQueryService.selectWithTripsBy(cityId);
 
         if (city.hasTrip()) {
-            throw new RuntimeException();
+            throw new BusinessException(ExceptionType.DELETE_CITY_FAIL, "여행이 존재하는 도시는 삭제할 수 없습니다.");
         }
 
         cityViewRepository.deleteCityViewsBy(cityId);

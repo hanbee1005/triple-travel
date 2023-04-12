@@ -1,5 +1,6 @@
 package com.triple.task.travel.trip.application.service;
 
+import com.triple.task.travel.common.exception.TripNotFoundException;
 import com.triple.task.travel.trip.adapter.out.persistence.TripRepository;
 import com.triple.task.travel.trip.application.model.TripQuery;
 import com.triple.task.travel.trip.domain.Trip;
@@ -20,10 +21,10 @@ public class TripQueryService {
     }
 
     public Trip selectBy(Long tripId) {
-        return tripRepository.findById(tripId).orElseThrow();
+        return tripRepository.findById(tripId).orElseThrow(TripNotFoundException::new);
     }
 
     public Trip selectTripWithCityBy(Long tripId) {
-        return tripRepository.selectTripWithCityBy(tripId).orElseThrow();
+        return tripRepository.selectTripWithCityBy(tripId).orElseThrow(TripNotFoundException::new);
     }
 }
