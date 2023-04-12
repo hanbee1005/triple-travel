@@ -30,6 +30,7 @@ public class QueryDslCityRepositoryImpl implements QueryDslCityRepository {
                 .leftJoin(city.cityViews, cityView)
                 .on(isSearchedOneMoreTimeWithinAWeek())
                 .orderBy(trip.startAt.asc().nullsLast(), isCreatedWithinADay().desc(), cityView.createdAt.desc().nullsLast())
+                .limit(10)
                 .fetch();
     }
 

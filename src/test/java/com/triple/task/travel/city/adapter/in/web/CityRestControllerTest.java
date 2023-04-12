@@ -55,8 +55,8 @@ class CityRestControllerTest extends CommonControllerTest {
                         RestdocsUtils.getDocumentResponse(),
                         requestFields(
                                 PayloadDocumentation.fieldWithPath("name").type(JsonFieldType.STRING).description("도시명"),
-                                PayloadDocumentation.fieldWithPath("continent").type(JsonFieldType.STRING).description("대륙명"),
-                                PayloadDocumentation.fieldWithPath("country").type(JsonFieldType.STRING).description("나라명")
+                                PayloadDocumentation.fieldWithPath("continent").type(JsonFieldType.STRING).description("대륙명").optional(),
+                                PayloadDocumentation.fieldWithPath("country").type(JsonFieldType.STRING).description("나라명").optional()
                         ),
                         RestdocsUtils.commonResponseFields(false,
                                 PayloadDocumentation.fieldWithPath("id").type(JsonFieldType.NUMBER).description("도시 ID"),
@@ -93,8 +93,8 @@ class CityRestControllerTest extends CommonControllerTest {
                         ),
                         requestFields(
                                 PayloadDocumentation.fieldWithPath("name").type(JsonFieldType.STRING).description("도시명"),
-                                PayloadDocumentation.fieldWithPath("continent").type(JsonFieldType.STRING).description("대륙명"),
-                                PayloadDocumentation.fieldWithPath("country").type(JsonFieldType.STRING).description("나라명")
+                                PayloadDocumentation.fieldWithPath("continent").type(JsonFieldType.STRING).description("대륙명").optional(),
+                                PayloadDocumentation.fieldWithPath("country").type(JsonFieldType.STRING).description("나라명").optional()
                         ),
                         RestdocsUtils.commonResponseFields(false,
                                 PayloadDocumentation.fieldWithPath("id").type(JsonFieldType.NUMBER).description("도시 ID"),
