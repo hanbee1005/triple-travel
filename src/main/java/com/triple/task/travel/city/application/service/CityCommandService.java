@@ -34,7 +34,12 @@ public class CityCommandService {
     }
 
     public void delete(Long cityId) {
-        // TODO 여행이 지정되지 않은 경우만 삭제
+        City city = cityQueryService.selectWithTripsBy(cityId);
+
+        if (city.hasTrip()) {
+            throw new RuntimeException();
+        }
+
         cityViewRepository.deleteCityViewsBy(cityId);
         cityRepository.deleteById(cityId);
     }

@@ -15,7 +15,6 @@ public class MockModel {
                 .name("서울")
                 .continent("아시아")
                 .country("대한민국")
-                .memberId(1L)
                 .build();
     }
 

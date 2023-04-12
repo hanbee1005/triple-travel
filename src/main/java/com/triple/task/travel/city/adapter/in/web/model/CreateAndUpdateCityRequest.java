@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Getter
 @Builder
@@ -15,15 +14,12 @@ public class CreateAndUpdateCityRequest {
     private String name;
     private String continent;
     private String country;
-    @NotNull
-    private Long memberId;
 
     public CreateCityCommand toCreateCityCommand() {
         return CreateCityCommand.builder()
                 .name(name)
                 .continent(continent)
                 .country(country)
-                .memberId(memberId)
                 .build();
     }
 
@@ -33,7 +29,6 @@ public class CreateAndUpdateCityRequest {
                 .name(name)
                 .continent(continent)
                 .country(country)
-                .memberId(memberId)
                 .build();
     }
 }

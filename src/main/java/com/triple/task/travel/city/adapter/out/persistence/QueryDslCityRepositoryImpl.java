@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 import static com.triple.task.travel.city.domain.QCity.city;
 import static com.triple.task.travel.city.domain.QCityView.cityView;
@@ -30,6 +31,16 @@ public class QueryDslCityRepositoryImpl implements QueryDslCityRepository {
                 .on(isSearchedOneMoreTimeWithinAWeek())
                 .orderBy(trip.startAt.asc().nullsLast(), isCreatedWithinADay().desc(), cityView.createdAt.desc().nullsLast())
                 .fetch();
+    }
+
+    @Override
+    public Optional<City> findCityWithTrip(Long cityId) {
+        return jpaQueryFactory
+                .selectFrom(city)
+                .leftJoin(city.trips, trip)
+                .fetchJoin()
+                .where(city.id.eq(cityId))
+                .stream().findAny();
     }
 
     private BooleanExpression ongoingAndScheduledTrip(Long memberId) {

@@ -9,5 +9,4 @@ public class CreateCityCommand {
     private String name;
     private String continent;
     private String country;
-    private Long memberId;
 }

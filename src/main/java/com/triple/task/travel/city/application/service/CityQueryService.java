@@ -41,4 +41,9 @@ public class CityQueryService {
         // TODO 에러 처리 필요
         return cityRepository.findById(cityId).orElseThrow();
     }
+
+    public City selectWithTripsBy(Long cityId) {
+        // TODO 에러 처리 필요
+        return cityRepository.findCityWithTrip(cityId).orElseThrow();
+    }
 }

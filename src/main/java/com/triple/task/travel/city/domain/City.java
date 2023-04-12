@@ -27,11 +27,6 @@ public class City extends AbstractDateTimeEntity {
     private String continent;
     private String country;
 
-    @Column(nullable = false)
-    private Long creator;
-    @Column(nullable = false)
-    private Long lastModifier;
-
     @Builder.Default
     @OneToMany(mappedBy = "city")
     private List<CityView> cityViews = new ArrayList<>();
@@ -45,8 +40,6 @@ public class City extends AbstractDateTimeEntity {
                 .name(command.getName())
                 .continent(command.getContinent())
                 .country(command.getCountry())
-                .creator(command.getMemberId())
-                .lastModifier(command.getMemberId())
                 .build();
     }
 
@@ -54,6 +47,9 @@ public class City extends AbstractDateTimeEntity {
         this.name = command.getName();
         this.continent = command.getContinent();
         this.country = command.getCountry();
-        this.lastModifier = command.getMemberId();
+    }
+
+    public boolean hasTrip() {
+        return !this.trips.isEmpty();
     }
 }
